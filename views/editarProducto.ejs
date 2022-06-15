@@ -1,0 +1,75 @@
+<h1>
+    <%= producto.id %>
+</h1>
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-sm-6 ">
+            <div class="card text-center" style="width: 18rem;">
+
+                <div class="card-header">
+                    <h3 class="card-title">Producto original</h1>
+                </div>
+                <img src="/images/<%= producto.imagen %> " class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h3>
+                            <%= producto.nombre %>
+                        </h3>
+
+                    </li>
+                    <li class="list-group-item">
+                        <h3><span class="text-success">$</span>
+                            <%= producto.precio %>
+                        </h3>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card ">
+                <div class="card-header">
+                    <h3 class="card-title">Modificacion del producto</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="post" action="../actualizar/" enctype="multipart/form-data">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <input type="text" name="id" value="<%= producto.id %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputProducto">Nombre del producto</label>
+                            <input type="text" name="nombre" value="<%= producto.nombre %>" class="form-control" id="inputProducto">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPrecio">Precio</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </span>
+                                </div>
+                                <input type="text" name="precio" id="inputPrecio" value="<%= producto.precio %>" class="form-control">
+                                <div class="input-group-append"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Imagen</label>
+                            <input type="file" name="imagen" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Modificar producto</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
