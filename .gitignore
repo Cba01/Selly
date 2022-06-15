@@ -1,5 +1,9 @@
-public/images/
 
+# exclude everything
+public/images/*
+
+# exception to the rule
+!public/images/.gitkeep
 
 # Created by https://www.toptal.com/developers/gitignore/api/node
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
