@@ -64,7 +64,7 @@ module.exports = {
 
             }
         }
-        if (req.body.nombre) {
+        if (req.body.nombre && req.body.precio) {
             producto.actualizar(conexion, req.body, function (err) {
             });
         }
