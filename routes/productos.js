@@ -28,4 +28,5 @@ router.get('/editar/:id',productosController.editar);
 router.post('/actualizar',cargar.single("imagen"), productosController.actualizar);
 
 
+
 module.exports = router;

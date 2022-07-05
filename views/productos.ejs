@@ -1,70 +1,70 @@
 <h1>Productos</h1>
 <div class="container-fluid">
     <div class="row">
+        <!-- Columna izquierda - productos -->
         <div class="col-md-8">
-            <!-- Topic Cards -->
-            <div id="cards_landscape_wrap-2">
-                <div class="container">
-                    <div class="row">
-                        <% for( let i=0; i < productos.length; i++ ) { %>
-                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                <div class="card-flyer">
-                                    <div class="text-box">
-                                        <div class="image-box">
-                                            <img src="images/<%= productos[i].imagen %>" alt="" />
-                                        </div>
-                                        <div class="text-container">
-                                            <h6>
-                                                <%= productos[i].nombre %>
-                                            </h6>
-
-
-                                            <p><span class="text-success">$</span>
-                                                <%= productos[i].precio %>
-                                            </p>
-
-
-                                            <div class="btn-group-vertical" role="group"
-                                                aria-label="Vertical button group">
-
-                                                <form class="form-inline" method="post"
-                                                    action="/productos/eliminar/<%= productos[i].id %>">
-                                                    <button class="btn btn-danger" type="submit">
-                                                        Eliminar
-                                                    </button>
-                                                </form>
+            <!-- Buscador -->
+            <input class="form-control mr-sm-2 buscador" type="text" id="buscador" placeholder="Buscar producto" aria-label="Search">                         
+            <div class="product-scroll">
+                <!-- Cards - Productos -->
+                <div id="cards_landscape_wrap-2">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Mostrar Productos de la base de datos -->
+                            <% for( let i=0; i < productos.length; i++ ) { %>
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 productos-buscador">
+                                    <div class="card card-flyer">
+                                        <div class="text-box">
+                                            <div class="image-box">
+                                                <img src="images/<%= productos[i].imagen %>" alt="" />
                                             </div>
-                                            <div class="btn-group-vertical" role="group"
-                                                aria-label="Vertical button group">
-
-                                                <form class="form-inline" method="get"
-                                                    action="/productos/editar/<%= productos[i].id %>">
-                                                    <button class="btn btn-primary" type="submit">
-                                                        Editar
-                                                    </button>
-                                                </form>
+                                            <div class="text-container">
+                                                <h6 class="product-title"><%= productos[i].nombre %></h6>
+    
+    
+                                                <p><span class="text-success">$</span><%= productos[i].precio %></p>
+    
+    
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Vertical button group">
+    
+                                                    <form class="form-inline formulario-eliminar" method="post" action="/productos/eliminar/<%= productos[i].id %>">
+                                                         <button class="btn btn-danger" type="submit">
+                                                            Eliminar <%= productos[i].id %>
+                                                        </button> 
+                                                    </form> 
+                                                </div>
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Vertical button group">
+    
+                                                    <form class="form-inline" method="get"
+                                                        action="/productos/editar/<%= productos[i].id %>">
+                                                        <button class="btn btn-primary" type="submit">
+                                                            Editar
+                                                        </button>
+                                                    </form>
+                                                </div>
+    
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
-                            <% } %>
+                                <% } %>
+                        </div>
                     </div>
-
                 </div>
             </div>
-
-
         </div>
+        <!-- Fin columna izquierda -->
+
+        <!-- Columna derecha - Lista de pedido -->
         <div class="col-md-4">
+            <!-- Card - Crear Producto -->
             <div class="card ">
                 <div class="card-header">
                     <h3 class="card-title">Añadir producto nuevo</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
+                <!-- Formulario de creacion de producto -->
                 <form method="post" action="/productos" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
@@ -91,15 +91,12 @@
                         </div>
 
                     </div>
-                    <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Agregar producto</button>
                     </div>
                 </form>
             </div>
-            <!-- /.card -->
         </div>
+        <!-- Fin columna derecha -->
     </div>
-
-
 </div>

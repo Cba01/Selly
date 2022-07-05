@@ -70,6 +70,7 @@ module.exports = {
         }
         res.redirect('/productos');
 
-    }
+    },
+    
 
 }

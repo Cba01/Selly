@@ -89,3 +89,14 @@
     letter-spacing: 1px;
     color: #9466C5;
   }
+
+  .table-cantidad > input{
+    width: 40px;
+    border: none;
+    outline: 0;
+  }
+
+  .product-scroll {
+    max-height: 800px;
+    overflow-y: auto;
+}

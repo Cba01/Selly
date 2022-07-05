@@ -1,0 +1,86 @@
+<h1 class="">Crear Pedido</h1>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Columna izquierda - productos -->
+        <div class="col-md-8">
+            <!-- Buscador -->
+            <input class="form-control mr-sm-2 buscador" type="text" id="buscador" placeholder="Buscar producto" aria-label="Search">
+            <div class="product-scroll">
+                <!-- Cards - Productos -->
+                <div id="cards_landscape_wrap-2">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Mostrar Productos de la base de datos -->
+                            <% for( let i=0; i < productos.length; i++ ) { %>
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 productos-buscador">
+                                    <div class="card card-flyer">
+                                        <div class="text-box">
+                                            <div class="image-box">
+                                                <img class="product-img" src="images/<%= productos[i].imagen %>" alt="" />
+                                            </div>
+                                            <div class="text-container">
+                                                <h1 class="product-id" hidden><%=productos[i].id%></h1>
+                                                <h6 class="product-title"><%=productos[i].nombre%></h6>
+                                                <div class="d-flex justify-content-center">
+                                                    <p>
+                                                        <span class="text-success">$</span>
+                                                    <p class="price"><%=productos[i].precio%></p>
+                                                    </p>
+                                                </div>
+                                                <div class="btn-group-vertical" role="group"
+                                                    aria-label="Vertical button group">
+
+                                                    <button class="btn btn-success button">
+                                                        Añadir al carrito
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin columna izquierda -->
+
+        <!-- Columna derecha - Lista de pedido -->
+        <div class="col-md-4">
+            <!-- Card de lista del productos en el pedido -->
+            <div class="card ">
+                <div class="card-header">
+                    <h3 class="card-title">Pedido</h3>
+                </div>
+                <!-- Lista de productos en el pedido -->
+                <form method="post" action="/crearPedido">
+                    <div class="card-body">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody">
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="card-footer">
+                        <h1>TOTAL: $0</h1>
+                        <button type="submit" class="btn btn-primary">Siguiente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Fin de columna derecha -->
+
+    </div>
+</div>
