@@ -34,7 +34,7 @@ function addItemCart(newItem) {
             carrito[i].cantidad++;
             const inputValue = inputElement[i];
             inputValue.value++;
-            console.log(carrito);
+            totalCart();
             return null;
         }
 
@@ -50,16 +50,47 @@ function renderCart() {
         const tr = document.createElement('tr');
         tr.classList.add('itemCart');
         const content = `
-        <th scope="row">${item.id}</th>
+        <th scope="row"><h6 class="idCartProduct">${item.id}</h6></th>
         <td> <img src="${item.img}" width="30" height="30" class="rounded" alt="..."></td>
         <td>${item.nombre}</td>
         <td class="table-cantidad"><input type="number" min="1" class="input-element" value="${item.cantidad}"></td>
         <td>${item.precio}</td>
+        <td><button type="button" class="btn btn-outline-danger deleteProduct"><i class="fas fa-circle-xmark"></i></button></td>
+
     `
         tr.innerHTML = content;
         tbody.append(tr);
+
+        tr.querySelector(".deleteProduct").addEventListener('click', removeItemCart)
     })
+    totalCart();
 }
+
+function removeItemCart(e) {
+    const buttonDelete = e.target;
+    const tr = buttonDelete.closest(".itemCart");
+    const idProducto = tr.querySelector('.idCartProduct').textContent;
+    for (let i = 0; i < carrito.length; i++) {
+        if (carrito[i].id.trim()=== idProducto.trim()) {
+
+            carrito.splice(i,1);
+        }
+    }
+    tr.remove();
+    totalCart();
+}
+
+/* Calcular total del carrito */
+function totalCart() {
+    let total = 0;
+    const itemCartTotal = document.querySelector('.itemCartTotal');
+    carrito.forEach((item) => {
+        const precio = Number(item.precio.replace("$", ''))
+        total = total + precio * item.cantidad;
+    })
+    itemCartTotal.innerHTML = `Total $${total}`;
+}
+
 
 //filtro de productos
 const searchBar = document.querySelector('.buscador');
@@ -84,24 +115,25 @@ searchBar.addEventListener('keyup', function (e) {
 });
 
 //SweetAlert2 - Confirmar Eliminacion de producto
-$('.formulario-eliminar').submit(function(e){
+$('.formulario-eliminar').submit(function (e) {
     e.preventDefault();
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Estas seguro de eliminar este producto?',
+        text: "Esta accion no se podrá revertir!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+        confirmButtonText: 'Si, Eliminarlo!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Eliminarlo!',
+                'El producto ha sido eliminado.',
                 'success'
-              )
+            )
             this.submit();
         }
-      })
+    })
 });
