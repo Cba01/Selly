@@ -1,0 +1,162 @@
+<h1>Confirmar pedido</h1>
+<h6><%= totalPrice %> </h6>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Columna izquierda - productos -->
+        <div class="col-md-8">
+            <div class="shadow p-3 mb-5 bg-white rounded">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="saved-client" data-toggle="tab" href="#client" role="tab"
+                            aria-controls="client" aria-selected="true">Cliente guardado</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="new-client" data-toggle="tab" href="#clientNew" role="tab"
+                            aria-controls="clientNew" aria-selected="false">Cliente nuevo</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <!-- Contenido cliente guardado -->
+                    <div class="tab-pane fade show active" id="client" role="tabpanel" aria-labelledby="client-tab">
+                        <form action="">
+                            <div class="row p-3">
+
+                                <div class="col-md-6">
+                                    <label for="divClientes" class="form-label">Datos del cliente</label>
+                                    <div class="shadow p-3 mb-5 bg-white rounded" id="divClientes">
+                                        <div class="client-scroll">
+
+                                            <% for( let i=0; i < cliente.length; i++ ) { %>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-md-1">
+
+                                                                <label for="radio<%=cliente[i].id%>" class="radio">
+                                                                    <input id="radio<%=cliente[i].id%>"
+                                                                        name="radio-group" value="<%= cliente[i].id %>"
+                                                                        type="radio">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="flexRadioDefault" id="flexRadioDefault1">
+                                                                    <span class="radio__mark"></span>
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="col-md-7">
+                                                                <h5>
+                                                                    <%= cliente[i].nombre %>
+                                                                </h5>
+                                                                <div class="card-subtitle text-muted">
+                                                                    <h6>
+                                                                        <%= cliente[i].telefono %>
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <h6>
+                                                                    <%= cliente[i].direccion %>
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="txtArea" class="form-label">Comentario</label>
+                                        <textarea class="form-control" id="txtArea" name="txtArea" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="tab-pane fade " id="clientNew" role="tabpanel" aria-labelledby="clientNew-tab">
+                        <!--  Contenido cliente nuevo -->
+                        <div class="row p-3 align-items-center justify-content-center">
+                            <div class="shadow p-3 mb-5 bg-white rounded w-50 ">
+                                <form class="">
+                                    <div class="mb-3">
+                                        <label for="newClientName" class="form-label">Nombre del cliente</label>
+                                        <input type="text" class="form-control" id="newClientName" name="newClientName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="newClientAddress" class="form-label">Direccion</label>
+                                        <input type="text" class="form-control" id="newClientAddress"
+                                            name="newClientAddress">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="newClientPhone" class="form-label">Telefono</label>
+                                        <input type="number" class="form-control" id="newClientPhone"
+                                            name="newClientPhone">
+                                    </div>
+                                    <button type="submit" class="btn btn-principal">Guardar</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin columna izquierda -->
+
+        <!-- Columna derecha - Lista de pedido -->
+        <div class="col-md-4">
+            <!-- Card - Crear Producto -->
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <div class="card ">
+                    <div class="card-header">
+                        <h3 class="card-title primary-text">Pedido</h3>
+                    </div>
+                    <!-- Lista de productos en el pedido -->
+                    <form method="post" action="/crearPedido/detalles">
+                        <div class="card-body">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Producto</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody">
+                                    <% for( let i = 0; i < pedido.length; i++ ) { %>
+                                        <tr>
+                                            <th scope="row"><%= pedido[i].id %></th>
+                                            <td> <img src="<%= pedido[i].img %>" width="30" height="30" class="rounded" alt="...">
+                                            </td>
+                                            <td>
+                                                <%= pedido[i].nombre %>
+                                            </td>
+                                            <td>
+                                                <%= pedido[i].cantidad %>
+                                            </td>
+                                            <td>
+                                                <%= pedido[i].precio %>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer text-center">
+                            <h1>TOTAL: <i class="fas fa-dollar-sign secundary-text fa-sm"></i><%= totalPrice %></h1>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Fin columna derecha -->
+    </div>
+</div>

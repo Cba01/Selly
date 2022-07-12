@@ -1,4 +1,5 @@
 <h1 class="">Crear Pedido</h1>
+<h3 class="datosPedido"> </h3>
 <div class="container-fluid">
     <div class="row">
         <!-- Columna izquierda - productos -->
@@ -23,14 +24,14 @@
                                                 <h6 class="product-title"><%=productos[i].nombre%></h6>
                                                 <div class="d-flex justify-content-center">
                                                     <p>
-                                                        <span class="text-success">$</span>
+                                                        <i class="fas fa-dollar-sign secundary-text"></i>
                                                     <p class="price"><%=productos[i].precio%></p>
                                                     </p>
                                                 </div>
                                                 <div class="btn-group-vertical" role="group"
                                                     aria-label="Vertical button group">
 
-                                                    <button class="btn btn-success button">
+                                                    <button class="btn btn-principal button ">
                                                         Añadir al carrito
                                                     </button>
                                                 </div>
@@ -51,10 +52,10 @@
             <!-- Card de lista del productos en el pedido -->
             <div class="card ">
                 <div class="card-header">
-                    <h3 class="card-title">Pedido</h3>
+                    <h3 class="card-title primary-text">Pedido</h3>
                 </div>
                 <!-- Lista de productos en el pedido -->
-                <form method="post" action="/crearPedido">
+                <form method="post" action="/crearPedido/detalles">
                     <div class="card-body">
                         <table class="table table-responsive">
                             <thead>
@@ -73,9 +74,11 @@
                         </table>
 
                     </div>
+                    <input type="text" class="form-control" name="datosPedido" id="datosPedido" value="" hidden>
+                    <input type="text" class="form-control" name="pedidoTotal" id="pedidoTotal" value="" hidden>
                     <div class="card-footer">
                         <h1 class="itemCartTotal">TOTAL: $0</h1>
-                        <button type="submit" class="btn btn-primary">Siguiente</button>
+                        <button type="submit" class="btn btn-principal ">Siguiente</button>
                     </div>
                 </form>
             </div>

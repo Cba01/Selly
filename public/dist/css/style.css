@@ -1,102 +1,213 @@
-
-
-
 .card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
 }
 
 /*----  Main Style  ----*/
-#cards_landscape_wrap-2{
-    text-align: center;
-    background: #F7F7F7;
-  }
-  #cards_landscape_wrap-2 .container{
-    
-  }
-  #cards_landscape_wrap-2 a{
-    text-decoration: none;
-    outline: none;
-  }
-  #cards_landscape_wrap-2 .card-flyer {
-    border-radius: 5px;
-  }
-  #cards_landscape_wrap-2 .card-flyer .image-box{
-    background: #ffffff;
-    overflow: hidden;
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
-    border-radius: 5px;
-  }
-  #cards_landscape_wrap-2 .card-flyer .image-box img{
-    -webkit-transition:all .9s ease; 
-    -moz-transition:all .9s ease; 
-    -o-transition:all .9s ease;
-    -ms-transition:all .9s ease; 
-    width: 100%;
-    height: 200px;
-  }
-  #cards_landscape_wrap-2 .card-flyer:hover .image-box img{
-    opacity: 0.7;
-    -webkit-transform:scale(1.15);
-    -moz-transform:scale(1.15);
-    -ms-transform:scale(1.15);
-    -o-transform:scale(1.15);
-    transform:scale(1.15);
-  }
-  #cards_landscape_wrap-2 .card-flyer .text-box{
-    text-align: center;
-  }
-  #cards_landscape_wrap-2 .card-flyer .text-box .text-container{
-    padding: 20px 18px;
-  }
-  #cards_landscape_wrap-2 .card-flyer{
-    background: #FFFFFF;
-    margin-top: 50px;
-    -webkit-transition: all 0.2s ease-in;
-    -moz-transition: all 0.2s ease-in;
-    -ms-transition: all 0.2s ease-in;
-    -o-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.40);
-  }
-  #cards_landscape_wrap-2 .card-flyer:hover{
-    background: #fff;
-    box-shadow: 0px 15px 26px rgba(0, 0, 0, 0.50);
-    -webkit-transition: all 0.2s ease-in;
-    -moz-transition: all 0.2s ease-in;
-    -ms-transition: all 0.2s ease-in;
-    -o-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-    margin-top: 50px;
-  }
-  #cards_landscape_wrap-2 .card-flyer .text-box p{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding-bottom: 0px; 
-    font-size: 17px;
-    letter-spacing: 1px;
-    color: #000000;
-    font-weight: bold;
-  }
-  #cards_landscape_wrap-2 .card-flyer .text-box h6{
-    margin-top: 0px;
-    margin-bottom: 4px; 
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-family: 'Roboto Black', sans-serif;
-    letter-spacing: 1px;
-    color: #9466C5;
-  }
+#cards_landscape_wrap-2 {
+  text-align: center;
+  background: #F7F7F7;
+}
 
-  .table-cantidad > input{
-    width: 40px;
-    border: none;
-    outline: 0;
-  }
+#cards_landscape_wrap-2 .container {}
 
-  .product-scroll {
-    max-height: 800px;
-    overflow-y: auto;
+#cards_landscape_wrap-2 a {
+  text-decoration: none;
+  outline: none;
+}
+
+#cards_landscape_wrap-2 .card-flyer {
+  border-radius: 5px;
+}
+
+#cards_landscape_wrap-2 .card-flyer .image-box {
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
+  border-radius: 5px;
+}
+
+#cards_landscape_wrap-2 .card-flyer .image-box img {
+  -webkit-transition: all .9s ease;
+  -moz-transition: all .9s ease;
+  -o-transition: all .9s ease;
+  -ms-transition: all .9s ease;
+  width: 100%;
+  height: 200px;
+}
+
+#cards_landscape_wrap-2 .card-flyer:hover .image-box img {
+  opacity: 0.7;
+  -webkit-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -o-transform: scale(1.15);
+  transform: scale(1.15);
+}
+
+#cards_landscape_wrap-2 .card-flyer .text-box {
+  text-align: center;
+}
+
+#cards_landscape_wrap-2 .card-flyer .text-box .text-container {
+  padding: 20px 18px;
+}
+
+#cards_landscape_wrap-2 .card-flyer {
+  background: #FFFFFF;
+  margin-top: 50px;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.40);
+}
+
+#cards_landscape_wrap-2 .card-flyer:hover {
+  background: #fff;
+  box-shadow: 0px 15px 26px rgba(0, 0, 0, 0.50);
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  margin-top: 50px;
+}
+
+#cards_landscape_wrap-2 .card-flyer .text-box p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 0px;
+  font-size: 17px;
+  letter-spacing: 1px;
+  color: #000000;
+  font-weight: bold;
+}
+
+#cards_landscape_wrap-2 .card-flyer .text-box h6 {
+  margin-top: 0px;
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Roboto Black', sans-serif;
+  letter-spacing: 1px;
+  color: #9466C5;
+}
+
+.table-cantidad>input {
+  width: 40px;
+  border: none;
+  outline: 0;
+}
+
+.product-scroll {
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+.client-scroll {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+
+/* Cambiar color botones boostrap */
+.btn-principal {
+  background-color: #9466C5 !important;
+  color: white !important;
+}
+
+.btn-principal:hover {
+  background-color: #7954a1 !important;
+}
+
+.btn-secundario {
+  background-color: #29CC97 !important;
+  color: white !important;
+}
+
+.btn-secundario:hover {
+  background-color: #1e946c !important;
+}
+
+/* Colores de los textos */
+.primary-text {
+  color: #9466C5;
+}
+
+.secundary-text {
+  color: #29CC97;
+}
+
+
+/* Colores del tab */
+.nav-link {
+  color: #000000;
+  font-weight: 500;
+}
+
+.nav-link.active {
+  color: #9466C5 !important;
+  font-weight: 700;
+}
+
+.nav-link:hover {
+  color: #c386ff !important;
+}
+
+/* Colores del input radio */
+.radio {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 20rem;
+}
+
+.radio input {
+  display: none;
+}
+
+.radio input:checked~.radio__mark:after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.radio__mark {
+  margin-right: 0.5rem;
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 0.2rem solid #9466C5;
+}
+
+.radio__mark:after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: #9466C5;
+  transition: all ease 0.2s;
+  opacity: 0;
+}
+
+.radio--disabled {
+  color: grey;
+  pointer-events: none;
+}
+
+.radio--disabled .radio__mark {
+  border-color: grey;
+}
+
+.radio--disabled .radio__mark {
+  border-color: grey;
 }

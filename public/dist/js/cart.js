@@ -61,9 +61,12 @@ function renderCart() {
         tr.innerHTML = content;
         tbody.append(tr);
 
-        tr.querySelector(".deleteProduct").addEventListener('click', removeItemCart)
+        tr.querySelector(".deleteProduct").addEventListener('click', removeItemCart);
+
+       tr.querySelector(".input-element").addEventListener('change', amountChange);
     })
     totalCart();
+    
 }
 
 function removeItemCart(e) {
@@ -89,6 +92,35 @@ function totalCart() {
         total = total + precio * item.cantidad;
     })
     itemCartTotal.innerHTML = `Total $${total}`;
+    document.querySelector('.pedidoTotal')
+    addLocalStorage();
+
+    /* Enviar informacion al backend */
+    totalPrice(total);
+    cartChange();
+}
+
+ function amountChange(e){
+    const sumaInput = e.target;
+    const tr = sumaInput.closest(".itemCart");
+    const idProducto = tr.querySelector('.idCartProduct').textContent;
+    carrito.forEach(item =>{
+        if(item.id.trim() === idProducto.trim()){
+            sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value
+            item.cantidad = sumaInput.value;
+            totalCart();
+        }
+    })
+} 
+
+/* Informacion para pasar por el form */
+        /* informacion del pedido */
+function cartChange(){
+    document.getElementById("datosPedido").value = JSON.stringify(carrito);
+}
+        /* informacion del precio total del pedido */
+function totalPrice(total){
+    document.getElementById("pedidoTotal").value = total;
 }
 
 
@@ -113,6 +145,25 @@ searchBar.addEventListener('keyup', function (e) {
     })
 
 });
+
+
+/* LocalStorage */
+function addLocalStorage(){
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+window.onload = function(){
+    const storage = JSON.parse(localStorage.getItem('carrito'));
+    if (storage) {
+        carrito = storage;
+        renderCart();
+    }
+}
+
+function getCart(){
+    return carrito;
+}
+
 
 //SweetAlert2 - Confirmar Eliminacion de producto
 $('.formulario-eliminar').submit(function (e) {

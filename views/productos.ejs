@@ -22,7 +22,7 @@
                                                 <h6 class="product-title"><%= productos[i].nombre %></h6>
     
     
-                                                <p><span class="text-success">$</span><%= productos[i].precio %></p>
+                                                <p><i class="fas fa-dollar-sign secundary-text"></i><%= productos[i].precio %></p>
     
     
                                                 <div class="btn-group-vertical" role="group"
@@ -60,9 +60,9 @@
         <!-- Columna derecha - Lista de pedido -->
         <div class="col-md-4">
             <!-- Card - Crear Producto -->
-            <div class="card ">
+            <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Añadir producto nuevo</h3>
+                    <h3 class="card-title primary-text">Añadir producto nuevo</h3>
                 </div>
                 <!-- Formulario de creacion de producto -->
                 <form method="post" action="/productos" enctype="multipart/form-data">
@@ -77,7 +77,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="fas fa-dollar-sign"></i>
+                                        <i class="fas fa-dollar-sign secundary-text"></i>
                                     </span>
                                 </div>
                                 <input type="text" name="precio" id="inputPrecio" class="form-control">
@@ -92,7 +92,7 @@
 
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Agregar producto</button>
+                        <button type="submit" class="btn btn-principal">Agregar producto</button>
                     </div>
                 </form>
             </div>
