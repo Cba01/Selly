@@ -1,5 +1,4 @@
 <h1>Confirmar pedido</h1>
-<h6><%= totalPrice %> </h6>
 <div class="container-fluid">
     <div class="row">
         <!-- Columna izquierda - productos -->
@@ -19,9 +18,8 @@
                 <div class="tab-content" id="myTabContent">
                     <!-- Contenido cliente guardado -->
                     <div class="tab-pane fade show active" id="client" role="tabpanel" aria-labelledby="client-tab">
-                        <form action="">
+                        <form action="/crearPedido/crear" method="post">
                             <div class="row p-3">
-
                                 <div class="col-md-6">
                                     <label for="divClientes" class="form-label">Datos del cliente</label>
                                     <div class="shadow p-3 mb-5 bg-white rounded" id="divClientes">
@@ -35,10 +33,8 @@
 
                                                                 <label for="radio<%=cliente[i].id%>" class="radio">
                                                                     <input id="radio<%=cliente[i].id%>"
-                                                                        name="radio-group" value="<%= cliente[i].id %>"
+                                                                        name="clientRadio" value="<%= cliente[i].id %>"
                                                                         type="radio">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="flexRadioDefault" id="flexRadioDefault1">
                                                                     <span class="radio__mark"></span>
                                                                 </label>
 
@@ -66,16 +62,21 @@
 
                                         </div>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
+                                        <label for="direccion" class="form-label">Direccion de entrega</label>
+                                        <input type="text" class="form-control" id="direccion" name="direccion">
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="txtArea" class="form-label">Comentario</label>
-                                        <textarea class="form-control" id="txtArea" name="txtArea" rows="5"></textarea>
+                                        <textarea class="form-control" id="txtArea" maxlength="200" name="txtArea" rows="5"></textarea>
                                     </div>
                                 </div>
+                                <input type="text" name="strPedido" id="strPedido" value="<%= strPedido %> " hidden>
+                                <input type="text" name="totalPrice" id="totalPrice" value="<%= totalPrice %> " hidden>
                             </div>
+                            <button type="submit" class="btn btn-secundario mt-3">Crear pedido</button>
                         </form>
 
                     </div>
@@ -118,42 +119,45 @@
                         <h3 class="card-title primary-text">Pedido</h3>
                     </div>
                     <!-- Lista de productos en el pedido -->
-                    <form method="post" action="/crearPedido/detalles">
-                        <div class="card-body">
-                            <table class="table table-responsive">
-                                <thead>
+                    <div class="card-body">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody">
+                                <% for( let i=0; i < pedido.length; i++ ) { %>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Imagen</th>
-                                        <th scope="col">Producto</th>
-                                        <th scope="col">Cantidad</th>
-                                        <th scope="col">Precio</th>
+                                        <th scope="row">
+                                            <%= pedido[i].id %>
+                                        </th>
+                                        <td> <img src="<%= pedido[i].img %>" width="30" height="30" class="rounded"
+                                                alt="...">
+                                        </td>
+                                        <td>
+                                            <%= pedido[i].nombre %>
+                                        </td>
+                                        <td>
+                                            <%= pedido[i].cantidad %>
+                                        </td>
+                                        <td>
+                                            <%= pedido[i].precio %>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody class="tbody">
-                                    <% for( let i = 0; i < pedido.length; i++ ) { %>
-                                        <tr>
-                                            <th scope="row"><%= pedido[i].id %></th>
-                                            <td> <img src="<%= pedido[i].img %>" width="30" height="30" class="rounded" alt="...">
-                                            </td>
-                                            <td>
-                                                <%= pedido[i].nombre %>
-                                            </td>
-                                            <td>
-                                                <%= pedido[i].cantidad %>
-                                            </td>
-                                            <td>
-                                                <%= pedido[i].precio %>
-                                            </td>
-                                        </tr>
                                     <% } %>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer text-center">
-                            <h1>TOTAL: <i class="fas fa-dollar-sign secundary-text fa-sm"></i><%= totalPrice %></h1>
-                        </div>
-                    </form>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer text-center">
+                        <h1>TOTAL: <i class="fas fa-dollar-sign secundary-text fa-sm"></i>
+                            <%= totalPrice %>
+                        </h1>
+                    </div>
                 </div>
             </div>
         </div>

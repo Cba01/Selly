@@ -1,7 +1,5 @@
-<h1>
-    <%= producto.id %>
-</h1>
-<div class="container">
+
+<div class="container p-5">
     <div class="row justify-content-center ">
         <div class="col-sm-6 ">
             <div class="card text-center" style="width: 18rem;">
@@ -29,7 +27,7 @@
         <div class="col-sm-6">
             <div class="card ">
                 <div class="card-header">
-                    <h3 class="card-title">Modificacion del producto</h3>
+                    <h3 class="card-title primary-text">Modificacion del producto</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -37,7 +35,7 @@
                     <div class="card-body">
 
                         <div class="form-group">
-                            <input type="text" name="id" value="<%= producto.id %>">
+                            <input type="text" name="id" value="<%= producto.id %>" hidden>
                         </div>
                         <div class="form-group">
                             <label for="inputProducto">Nombre del producto</label>
@@ -65,7 +63,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Modificar producto</button>
+                        <button type="submit" class="btn btn-principal">Modificar producto</button>
                     </div>
                 </form>
             </div>

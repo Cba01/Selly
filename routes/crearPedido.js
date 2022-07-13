@@ -7,5 +7,6 @@ const productosController = require("../controllers/productosController");
 /* GET home page. */
 router.get('/', crearPedidoController.index);
 router.post('/detalles', crearPedidoController.confirmarPedido);
+router.post('/crear', crearPedidoController.guardar);
 
 module.exports = router;

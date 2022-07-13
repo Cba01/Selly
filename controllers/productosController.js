@@ -7,8 +7,6 @@ module.exports = {
     index: function (req, res) {
 
         producto.obtener(conexion, function (err, datos) {
-            console.log(datos);
-
 
             res.render('productos', { title: 'Express', productos: datos, n: 1 });
 

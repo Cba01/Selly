@@ -1,0 +1,43 @@
+<h1>clientes</h1>
+<div class="container shadow p-3 mb-5 bg-white rounded">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for( let i=0; i < clientes.length; i++ ) { %>
+                <tr>
+                    <th scope="row">
+                        <%= clientes[i].id %>
+                    </th>
+                    <td>
+                        <%= clientes[i].nombre %>
+                    </td>
+                    <td>
+                        <%= clientes[i].telefono %>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <div class="btn-group">
+                                <a type="button" class="primary-text" data-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu" id="menuTable">
+                                    <a class="dropdown-item" href="#">Detalles</a>
+                                    <a class="dropdown-item" href="#">Editar</a>
+                                    <a class="dropdown-item" href="#">Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
+
+        </tbody>
+    </table>
+</div>
