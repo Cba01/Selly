@@ -7,5 +7,6 @@ module.exports = {
         conexion.query("INSERT INTO pedido( direccion, fecha, idCliente, precio, idEstadoPago, idEstadoEnvio, comentario) VALUES (?,NOW(),?,?,1,1,?)", [datos.direccion, datos.clientRadio, datos.totalPrice, datos.txtArea],funcion);
     },
     
+    
 
 }

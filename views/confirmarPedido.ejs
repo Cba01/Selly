@@ -23,41 +23,40 @@
                                 <div class="col-md-6">
                                     <label for="divClientes" class="form-label">Datos del cliente</label>
                                     <div class="shadow p-3 mb-5 bg-white rounded" id="divClientes">
+                                        <input class="form-control mr-sm-2 mb-3 buscador" type="text" id="buscador"
+                                            placeholder="Buscar cliente" aria-label="Search">
+                                        <!-- lista de clientes -->
                                         <div class="client-scroll">
-
                                             <% for( let i=0; i < cliente.length; i++ ) { %>
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-1">
+                                                    <div class="card cliente-buscador">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-1">
 
-                                                                <label for="radio<%=cliente[i].id%>" class="radio">
-                                                                    <input id="radio<%=cliente[i].id%>"
-                                                                        name="clientRadio" value="<%= cliente[i].id %>"
-                                                                        type="radio">
-                                                                    <span class="radio__mark"></span>
-                                                                </label>
+                                                                    <label for="radio<%=cliente[i].id%>" class="radio">
+                                                                        <input id="radio<%=cliente[i].id%>"
+                                                                            name="clientRadio"
+                                                                            value="<%= cliente[i].id %>" type="radio">
+                                                                        <span class="radio__mark"></span>
+                                                                    </label>
 
-                                                            </div>
-                                                            <div class="col-md-7">
-                                                                <h5>
-                                                                    <%= cliente[i].nombre %>
-                                                                </h5>
-                                                                <div class="card-subtitle text-muted">
+                                                                </div>
+                                                                <div class="col-md-7">
+                                                                    <h5 class="client-name"><%= cliente[i].nombre %></h5>
+                                                                    <div class="card-subtitle text-muted">
+                                                                        <h6>
+                                                                            <%= cliente[i].telefono %>
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
                                                                     <h6>
-                                                                        <%= cliente[i].telefono %>
                                                                     </h6>
                                                                 </div>
                                                             </div>
-
-                                                            <div class="col-md-4">
-                                                                <h6>
-                                                                    <%= cliente[i].direccion %>
-                                                                </h6>
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 <% } %>
 
                                         </div>
@@ -66,11 +65,13 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="direccion" class="form-label">Direccion de entrega</label>
-                                        <input type="text" class="form-control" id="direccion" name="direccion">
+                                        <input type="text" class="form-control" id="direccion" name="direccion"
+                                            required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="txtArea" class="form-label">Comentario</label>
-                                        <textarea class="form-control" id="txtArea" maxlength="200" name="txtArea" rows="5"></textarea>
+                                        <textarea class="form-control" id="txtArea" maxlength="200" name="txtArea"
+                                            rows="5"></textarea>
                                     </div>
                                 </div>
                                 <input type="text" name="strPedido" id="strPedido" value="<%= strPedido %> " hidden>
@@ -80,25 +81,24 @@
                         </form>
 
                     </div>
+                    <!--  Contenido cliente nuevo -->
                     <div class="tab-pane fade " id="clientNew" role="tabpanel" aria-labelledby="clientNew-tab">
-                        <!--  Contenido cliente nuevo -->
                         <div class="row p-3 align-items-center justify-content-center">
                             <div class="shadow p-3 mb-5 bg-white rounded w-50 ">
-                                <form class="">
+                                <form class="" method="post" action="/crearPedido/cliente/crear">
                                     <div class="mb-3">
                                         <label for="newClientName" class="form-label">Nombre del cliente</label>
-                                        <input type="text" class="form-control" id="newClientName" name="newClientName">
+                                        <input type="text" class="form-control" id="newClientName" name="clientName">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="newClientAddress" class="form-label">Direccion</label>
-                                        <input type="text" class="form-control" id="newClientAddress"
-                                            name="newClientAddress">
-                                    </div>
+
                                     <div class="mb-3">
                                         <label for="newClientPhone" class="form-label">Telefono</label>
-                                        <input type="number" class="form-control" id="newClientPhone"
-                                            name="newClientPhone">
+                                        <input type="number" max="999999999" min="100000000" class="form-control"
+                                            id="newClientPhone" name="clientPhone">
                                     </div>
+                                    <input type="text" name="strPedido" id="strPedido" value="<%= strPedido %> " hidden>
+                                    <input type="text" name="totalPrice" id="totalPrice" value="<%= totalPrice %> "
+                                        hidden>
                                     <button type="submit" class="btn btn-principal">Guardar</button>
                                 </form>
                             </div>
@@ -127,7 +127,7 @@
                                     <th scope="col">Imagen</th>
                                     <th scope="col">Producto</th>
                                     <th scope="col">Cantidad</th>
-                                    <th scope="col">Precio</th>
+                                    <th scope="col">Precio c/u</th>
                                 </tr>
                             </thead>
                             <tbody class="tbody">
@@ -164,3 +164,6 @@
         <!-- Fin columna derecha -->
     </div>
 </div>
+<%- contentFor('footer') %>
+    <script src="/dist/js/confirmarPedidoScript.js"></script>
+<%- contentFor('header') %>

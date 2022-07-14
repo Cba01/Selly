@@ -8,5 +8,6 @@ const productosController = require("../controllers/productosController");
 router.get('/', crearPedidoController.index);
 router.post('/detalles', crearPedidoController.confirmarPedido);
 router.post('/crear', crearPedidoController.guardar);
+router.post('/cliente/crear', crearPedidoController.guardarCliente);
 
 module.exports = router;

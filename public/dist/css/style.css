@@ -109,10 +109,13 @@
 }
 
 .client-scroll {
-  max-height: 500px;
+  max-height: 450px;
   overflow-y: auto;
 }
-
+.table-scroll {
+  max-height: 600px;
+  overflow-y: auto;
+}
 
 /* Cambiar color botones boostrap */
 .btn-principal {
@@ -147,14 +150,10 @@
 .nav-link {
   color: #000000;
   font-weight: 500;
-}
-
-.nav-link.active {
+}.nav-link.active {
   color: #9466C5 !important;
   font-weight: 700;
-}
-
-.nav-link:hover {
+}.nav-link:hover {
   color: #c386ff !important;
 }
 
@@ -165,27 +164,19 @@
   font-size: 1rem;
   cursor: pointer;
   width: 20rem;
-}
-
-.radio input {
+}.radio input {
   display: none;
-}
-
-.radio input:checked~.radio__mark:after {
+}.radio input:checked~.radio__mark:after {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
-}
-
-.radio__mark {
+}.radio__mark {
   margin-right: 0.5rem;
   position: relative;
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
   border: 0.2rem solid #9466C5;
-}
-
-.radio__mark:after {
+}.radio__mark:after {
   position: absolute;
   content: "";
   top: 50%;
@@ -197,17 +188,26 @@
   background: #9466C5;
   transition: all ease 0.2s;
   opacity: 0;
-}
-
-.radio--disabled {
+}.radio--disabled {
   color: grey;
   pointer-events: none;
-}
-
-.radio--disabled .radio__mark {
+}.radio--disabled .radio__mark {
+  border-color: grey;
+}.radio--disabled .radio__mark {
   border-color: grey;
 }
 
-.radio--disabled .radio__mark {
-  border-color: grey;
+/* Color DataTable */
+.page-item.active .page-link {
+  color: #fff !important;
+  background-color: #9466C5 !important;
+  border-color: #9466C5 !important; 
+}.page-link {
+  color: #9466C5 !important;
+  background-color: #fff !important;
+  border: 1px solid #dee2e6 !important; 
+}.page-link:hover {
+  color: #fff !important;
+  background-color: #75529b !important;
+  border-color: #75529b !important; 
 }

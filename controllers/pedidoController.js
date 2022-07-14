@@ -23,18 +23,30 @@ module.exports = {
         });
     },
     guardar: function (req, res) {
-        console.log("------------Controller Guardar-------------");
         pedido.insertar(conexion, req.body, function (err, datos) {
-             res.redirect('/');
-            console.log("____________________" + datos.insertId);
+            const pedido = JSON.parse(req.body.strPedido);
+            const idPedido = datos.insertId;
 
+            /* Insertar productos del pedido a la base de datos */
+             for (let i = 0; i < pedido.length; i++) {
+                conexion.query("INSERT INTO producto_pedido(idPedido,idProducto,cantidad) VALUES (?,?,?)", [idPedido, pedido[i].id, pedido[i].cantidad]);
+            };
+            res.redirect('/pedidos'); 
         });
-
-
     },
     lista: function (req, res) {
         pedido.obtener(conexion, function (err, datos) {
-            res.render('pedidos', {pedidos: datos});
+            res.render('pedidos', { pedidos: datos });
+        });
+    },
+    guardarCliente: function (req, res) {
+        const params = req.body
+        const pedido = JSON.parse(params.strPedido);
+        cliente.insertar(conexion, req.body, function (err) {
+            console.log("ENTRO AL GUARDAR CLIENTE")
+            cliente.obtener(conexion, function (err, datos) {
+                res.render('confirmarPedido', { cliente: datos, strPedido: params.strPedido, totalPrice: params.totalPrice, pedido: pedido })
+            });
         });
     },
 

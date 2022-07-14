@@ -8,4 +8,12 @@ module.exports = {
             res.render('clientes', {clientes: datos});
         });
     },
+    guardar: function (req, res) {
+        cliente.insertar(conexion, req.body, function (err, datos) {
+             res.redirect('/');
+
+        });
+
+
+    },
 }
