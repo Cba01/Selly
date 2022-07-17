@@ -49,5 +49,10 @@ module.exports = {
             });
         });
     },
+    eliminar: function (req, res) {
+        pedido.borrar(conexion, req.params.id, function (err) {
+            res.redirect('/pedidos');
+        })
+    }
 
 }

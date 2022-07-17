@@ -42,13 +42,13 @@
                             <span class="badge bg-danger">Pendiente</span>
                             <% } %>
                     </td>
-                    <td>
-                        <div class="dropdown">
+                    <td class="p-2">
+                        <div class="dropdown drop-down">
                             <div class="btn-group">
-                                <a type="button" class="primary-text" data-toggle="dropdown">
+                                <a type="button" class="primary-text pt-2 pb-1 pl-2 pr-2" data-toggle="dropdown">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
-                                <div class="dropdown-menu" id="menuTable">
+                                <div class="dropdown-menu drop-down-menu" id="menuTable">
                                     <form class="form-inline formulario-eliminar" method="get"
                                         action="/pedidos/detalle/<%= pedidos[i].id %>">
                                         <button class="dropdown-item" type="submit">
@@ -92,7 +92,7 @@
         $(document).ready(function () {
             $('#pedido').DataTable({
                 "scrollY": "550px",
-                "scrollCollapse": true,
+                "scrollCollapse": false,
                 "language": {
                     "emptyTable": "No hay datos disponibles",
                     "search": "Buscar:",
@@ -106,9 +106,33 @@
                     "info": "Mostrando _START_ a _END_ de _TOTAL_ pedidos",
                     "infoEmpty": "Mostrando 0 a 0 de 0 pedidos",
                     "infoFiltered": "(Pedidos filtrados de _MAX_ )",
-                    "lengthMenu":     "Mostrar _MENU_ pedidos"
+                    "lengthMenu": "Mostrar _MENU_ pedidos"
                 }
             });
+        });
+
+        //SweetAlert2 - Confirmar Eliminacion de producto
+        $('.formulario-eliminar').submit(function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Estas seguro de eliminar este pedido?',
+                text: "Esta accion no se podrá revertir!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#9466C5',
+                cancelButtonColor: '#CC2929',
+                confirmButtonText: 'Si, Eliminarlo!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'El producto ha sido eliminado.',
+                        'success'
+                    )
+                    this.submit();
+                }
+            })
         });
     </script>
 

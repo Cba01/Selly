@@ -22,15 +22,15 @@
                     <td>
                         <%= clientes[i].telefono %>
                     </td>
-                    <td>
+                    <td class="p-2">
                         <div class="dropdown">
                             <div class="btn-group">
-                                <a type="button" class="primary-text" data-toggle="dropdown">
+                                <a type="button" class="primary-text pt-2 pb-1 pl-2 pr-2" data-toggle="dropdown">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu" id="menuTable">
                                     <form class="form-inline formulario-eliminar" method="get"
-                                        action="/pedidos/detalle/<%= clientes[i].id %>">
+                                        action="/clientes/detalle/<%= clientes[i].id %>">
                                         <button class="dropdown-item" type="submit">
                                             <i class="fas fa-solid fa-poll-h text-secondary"></i>
 
@@ -38,7 +38,7 @@
                                         </button>
                                     </form>
                                     <form class="form-inline formulario-eliminar" method="get"
-                                        action="/pedidos/editar/<%= clientes[i].id %>">
+                                        action="/clientes/editar/<%= clientes[i].id %>">
                                         <button class="dropdown-item" type="submit">
                                             <i class="fas fa-solid fa-edit text-info"></i>
 
@@ -46,7 +46,7 @@
                                         </button>
                                     </form>
                                     <form class="form-inline formulario-eliminar" method="post"
-                                        action="/pedidos/eliminar/<%= clientes[i].id %>">
+                                        action="/clientes/eliminar/<%= clientes[i].id %>">
                                         <button class="dropdown-item" type="submit">
                                             <i class="fas fa-solid fa-trash-alt text-danger"></i>
 
@@ -72,7 +72,7 @@
         $(document).ready(function () {
             $('#clients').DataTable({
                 "scrollY": "550px",
-                "scrollCollapse": true,
+                "scrollCollapse": false,
                 "language": {
                     "emptyTable": "No hay datos disponibles",
                     "search": "Buscar:",
@@ -89,6 +89,29 @@
                     "lengthMenu":     "Mostrar _MENU_ clientes"
                 }
             });
+        });
+        //SweetAlert2 - Confirmar Eliminacion de producto
+        $('.formulario-eliminar').submit(function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Estas seguro de eliminar este cliente?',
+                text: "Se eliminará todos los pedidos relacionados con este cliente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#9466C5',
+                cancelButtonColor: '#CC2929',
+                confirmButtonText: 'Si, Eliminarlo!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'El cliente ha sido eliminado.',
+                        'success'
+                    )
+                    this.submit();
+                }
+            })
         });
     </script>
 

@@ -7,6 +7,8 @@ const productosController = require("../controllers/productosController");
 
 /* GET home page. */
 router.get('/', clienteController.index);
+router.post('/eliminar/:id', clienteController.eliminar);
+
 
 
 module.exports = router;

@@ -13,7 +13,10 @@ module.exports = {
              res.redirect('/');
 
         });
-
-
     },
+    eliminar: function (req, res) {
+        cliente.borrar(conexion, req.params.id, function (err) {
+            res.redirect('/clientes');
+        })
+    }
 }
