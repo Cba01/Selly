@@ -49,16 +49,15 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu drop-down-menu" id="menuTable">
-                                    <form class="form-inline formulario-eliminar" method="get"
+                                    <form class="form-inline" method="get"
                                         action="/pedidos/detalle/<%= pedidos[i].id %>">
                                         <button class="dropdown-item" type="submit">
                                             <i class="fas fa-solid fa-poll-h text-secondary"></i>
-
                                             Detalles
                                         </button>
                                     </form>
-                                    <form class="form-inline formulario-eliminar" method="get"
-                                        action="/pedidos/editar/<%= pedidos[i].id %>">
+                                    <form class="form-inline" method="get"
+                                        action="/pedidos/editarProductos/<%= pedidos[i].id %>">
                                         <button class="dropdown-item" type="submit">
                                             <i class="fas fa-solid fa-edit text-info"></i>
 

@@ -1,0 +1,150 @@
+<div class="container pt-5">
+    <div class="shadow bg-white rounded card card-principal">
+        <div class="card-header">
+            <div class="card-title">
+                Pedido #<%= pedido.id %>
+            </div>
+        </div>
+        <div class="card-body client-scroll">
+            <div class="row row-cols-3">
+                <div class="col-7">
+                    <div class="row pb-4">
+                        <div class="col">
+                            <h4 class="primary-text">Cliente</h4>
+                            <h6>
+                                <%= pedido.cliente %>
+                            </h6>
+                            <h6>
+                                <%= pedido.telefono %>
+                            </h6>
+                        </div>
+                        <div class="col">
+                            <h4 class="primary-text">Estado</h4>
+                            <% if (pedido.idEstadoPago=1) { %>
+                                <span class="badge bg-danger">Pendiente</span>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="row pb-4">
+                        <div class="col">
+                            <h4 class="primary-text">
+                                Direccion
+                            </h4>
+                            <h6>
+                                <%= pedido.direccion %>
+                            </h6>
+                        </div>
+                        <div class="col">
+                            <h4 class="primary-text">
+                                Comentario
+                            </h4>
+                            <h6 class="text-break">
+                                <%= pedido.comentario %>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <h4 class="primary-text">Productos del pedido</h4>
+
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <% for( let i=0; i < datos.length; i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%= datos[i].idProducto %>
+                                    </td>
+                                    <td>
+                                        <img src="/images/<%= datos[i].imagen %>" width="30" height="30" class="rounded"
+                                            alt="" />
+                                    </td>
+                                    <td>
+                                        <%= datos[i].nombreProducto %>
+                                    </td>
+                                    <td>
+                                        <%= datos[i].cantidad %>
+                                    </td>
+                                </tr>
+                                <% } %>
+
+                        </tbody>
+                    </table>
+                    <h1>TOTAL: <i class="fas fa-dollar-sign secundary-text fa-sm"></i>
+                        <%= pedido.precio %>
+                    </h1>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="card-footer text-center">
+            <div class="row align-items-center">
+                <form class="form-inline formulario-eliminar" method="post" action="/pedidos/eliminar/<%= pedido.id %>">
+                    <button class="btn btn-danger" type="submit">
+                        <i class="fas fa-solid fa-trash-alt"></i>
+                        Eliminar
+                    </button>
+                </form>
+                <form class="form-inline" method="get" action="/pedidos/editarProductos/<%= pedido.id %>">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-solid fa-edit"></i>
+
+                        Editar
+                    </button>
+                </form>
+                <form class="form-inline" method="get" action="/pedidos/editarDatos/<%= pedido.id %>">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-solid fa-edit"></i>
+
+                        Editar datos
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<%- contentFor('footer') %>
+<script>
+    //SweetAlert2 - Confirmar Eliminacion de producto
+    $('.formulario-eliminar').submit(function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Estas seguro de eliminar este pedido?',
+                text: "Esta accion no se podrá revertir!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#9466C5',
+                cancelButtonColor: '#CC2929',
+                confirmButtonText: 'Si, Eliminarlo!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'El producto ha sido eliminado.',
+                        'success'
+                    )
+                    this.submit();
+                }
+            })
+        });
+</script>
+<%- contentFor('header') %>

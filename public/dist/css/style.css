@@ -1,60 +1,41 @@
+/* Card de productos */
 .card-img-top {
   width: 100%;
   height: 15vw;
   object-fit: cover;
-}
-
-/*----  Main Style  ----*/
-#cards_landscape_wrap-2 {
+}#cards_landscape_wrap-2 {
   text-align: center;
   background: #F7F7F7;
-}
-
-#cards_landscape_wrap-2 .container {}
-
+}#cards_landscape_wrap-2 .container {}
 #cards_landscape_wrap-2 a {
   text-decoration: none;
   outline: none;
-}
-
-#cards_landscape_wrap-2 .card-flyer {
+}#cards_landscape_wrap-2 .card-flyer {
   border-radius: 5px;
-}
-
-#cards_landscape_wrap-2 .card-flyer .image-box {
+}#cards_landscape_wrap-2 .card-flyer .image-box {
   background: #ffffff;
   overflow: hidden;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
   border-radius: 5px;
-}
-
-#cards_landscape_wrap-2 .card-flyer .image-box img {
+}#cards_landscape_wrap-2 .card-flyer .image-box img {
   -webkit-transition: all .9s ease;
   -moz-transition: all .9s ease;
   -o-transition: all .9s ease;
   -ms-transition: all .9s ease;
   width: 100%;
   height: 200px;
-}
-
-#cards_landscape_wrap-2 .card-flyer:hover .image-box img {
+}#cards_landscape_wrap-2 .card-flyer:hover .image-box img {
   opacity: 0.7;
   -webkit-transform: scale(1.15);
   -moz-transform: scale(1.15);
   -ms-transform: scale(1.15);
   -o-transform: scale(1.15);
   transform: scale(1.15);
-}
-
-#cards_landscape_wrap-2 .card-flyer .text-box {
+}#cards_landscape_wrap-2 .card-flyer .text-box {
   text-align: center;
-}
-
-#cards_landscape_wrap-2 .card-flyer .text-box .text-container {
+}#cards_landscape_wrap-2 .card-flyer .text-box .text-container {
   padding: 20px 18px;
-}
-
-#cards_landscape_wrap-2 .card-flyer {
+}#cards_landscape_wrap-2 .card-flyer {
   background: #FFFFFF;
   margin-top: 50px;
   -webkit-transition: all 0.2s ease-in;
@@ -63,9 +44,7 @@
   -o-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.40);
-}
-
-#cards_landscape_wrap-2 .card-flyer:hover {
+}#cards_landscape_wrap-2 .card-flyer:hover {
   background: #fff;
   box-shadow: 0px 15px 26px rgba(0, 0, 0, 0.50);
   -webkit-transition: all 0.2s ease-in;
@@ -74,9 +53,7 @@
   -o-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   margin-top: 50px;
-}
-
-#cards_landscape_wrap-2 .card-flyer .text-box p {
+}#cards_landscape_wrap-2 .card-flyer .text-box p {
   margin-top: 5px;
   margin-bottom: 5px;
   padding-bottom: 0px;
@@ -84,9 +61,7 @@
   letter-spacing: 1px;
   color: #000000;
   font-weight: bold;
-}
-
-#cards_landscape_wrap-2 .card-flyer .text-box h6 {
+}#cards_landscape_wrap-2 .card-flyer .text-box h6 {
   margin-top: 0px;
   margin-bottom: 4px;
   font-size: 18px;
@@ -104,7 +79,7 @@
 }
 
 .product-scroll {
-  max-height: 800px;
+  max-height: 780px;
   overflow-y: auto;
 }
 
@@ -113,14 +88,19 @@
   overflow-y: auto;
 }
 .table-scroll {
-  max-height: 600px;
+  max-height: 295px;
   overflow-y: auto;
 }
+
+
 
 /* Cambiar color botones boostrap */
 .btn-principal {
   background-color: #9466C5 !important;
   color: white !important;
+}
+.card-principal{
+  border-top: 3px solid #9466C5 !important;
 }
 
 .btn-principal:hover {
@@ -210,4 +190,21 @@
   color: #fff !important;
   background-color: #75529b !important;
   border-color: #75529b !important; 
+}
+
+/* ScrollBar STYLE */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ebebeb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #9466C5; 
 }

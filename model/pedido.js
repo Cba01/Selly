@@ -10,6 +10,19 @@ module.exports = {
         conexion.query('DELETE FROM pedido WHERE id=?', [id], funcion);
 
     },
+    obtenerProductoID: function (conexion, id, funcion) {
+        conexion.query("SELECT p.id, p.idPedido, p.idProducto, pr.nombre as nombreProducto,pr.precio , pr.imagen, p.cantidad FROM producto_pedido p INNER JOIN producto pr ON pr.id = p.idProducto WHERE p.idPedido = ?", [id], funcion);
+
+    },
+    obtenerPedidoID: function (conexion, id, funcion) {
+        conexion.query("SELECT p.id, p.direccion,DATE_FORMAT(p.fecha, '%H:%i %d/%m/%Y') as fecha , p.precio,p.idEstadoPago,p.idEstadoEnvio,p.comentario, c.nombre as cliente, c.telefono FROM pedido p INNER JOIN cliente c ON c.id = p.idCliente WHERE p.id = ?", [id], funcion);
+
+    },
+    actualizar: function (conexion, datos, funcion) {
+        conexion.query("UPDATE pedido SET direccion = ?, idCliente = ?, idEstadoPago = ?, idEstadoPedido = ?, comentario = ? WHERE id=? ", [datos.pedidoTotal, datos.idPedido], funcion);
+
+    },
+
     
     
 
