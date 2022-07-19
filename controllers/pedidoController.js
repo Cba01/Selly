@@ -47,7 +47,6 @@ module.exports = {
             console.log(params)
             cliente.obtener(conexion, function (err, datos) {
                 res.redirect('/crearPedido');
-                 /* res.render('confirmarPedido', { cliente: datos, strPedido: params.strPedido, totalPrice: params.totalPrice, pedido: pedido }) */
            });
         });
     },
@@ -74,11 +73,11 @@ module.exports = {
         });
     },
     editarDatos: function (req, res) {
-        pedido.obtenerProductoID(conexion, req.params.id, function (err, registros) {
+        pedido.obtenerPedidoID(conexion, req.params.id, function (err, registros) {
             cliente.obtener(conexion, function (err, datos) {
                 const pedido = registros;
                 const strPedido = JSON.stringify(registros);
-                res.render('editarDatosPedido', { pedido: pedido, strPedido: strPedido, cliente: datos });
+                res.render('editarDatosPedido', { pedido: pedido[0], strPedido: strPedido, cliente: datos });
             });
         });
     },
@@ -95,8 +94,10 @@ module.exports = {
     },
     actualizarDatos: function (req, res) {
         const datos = req.body;
-        
-        res.send(datos);
+        pedido.actualizar(conexion, datos, function (err) {
+                  res.redirect('/pedidos/detalle/'+req.body.idPedido)
+            
+        });
 
     },
     guardarClienteDatos: function (req, res) {

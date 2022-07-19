@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="inputProducto">Nombre del producto</label>
-                            <input type="text" name="nombre" class="form-control" id="inputProducto">
+                            <input type="text" name="nombre" class="form-control" id="inputProducto" required>
                         </div>
 
                         <div class="form-group">
@@ -80,14 +80,14 @@
                                         <i class="fas fa-dollar-sign secundary-text"></i>
                                     </span>
                                 </div>
-                                <input type="text" name="precio" id="inputPrecio" class="form-control">
+                                <input type="number" name="precio" id="inputPrecio" class="form-control" required>
                                 <div class="input-group-append"></div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Imagen</label>
-                            <input type="file" name="imagen" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" name="imagen" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
                         </div>
 
                     </div>

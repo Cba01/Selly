@@ -19,10 +19,26 @@
                             </h6>
                         </div>
                         <div class="col">
-                            <h4 class="primary-text">Estado</h4>
-                            <% if (pedido.idEstadoPago=1) { %>
-                                <span class="badge bg-danger">Pendiente</span>
-                                <% } %>
+                            <div class="container pb-4">
+                                <h4 class="primary-text">Estado Pedido</h4>
+                                <% if (pedido.idEstadoEnvio==1) { %>
+                                    <span class="badge bg-danger">Pendiente</span>
+                                    <% }else if(pedido.idEstadoEnvio==2) { %>
+                                        <span class="badge bg-warning">Preparado</span>
+                                        <% }else if(pedido.idEstadoEnvio==3) { %>
+                                            <span class="badge bg-primary">Enviado</span>
+                                            <% }else if(pedido.idEstadoEnvio==4) { %>
+                                                <span class="badge bg-success">Entregado</span>
+                                                <% } %>
+                            </div>
+                            <div class="container">
+                                <h4 class="primary-text">Estado Pago</h4>
+                                <% if (pedido.idEstadoPago==1) { %>
+                                    <span class="badge bg-danger">Pendiente</span>
+                                    <% } else if(pedido.idEstadoPago==2){ %>
+                                        <span class="badge bg-success">Pagado</span>
+                                        <% } %>
+                            </div>
                         </div>
                     </div>
                     <div class="row pb-4">
@@ -43,8 +59,9 @@
                             </h6>
                         </div>
                     </div>
+
                 </div>
-                <div class="col-5">
+                <div class="col-5 ">
                     <h4 class="primary-text">Productos del pedido</h4>
 
                     <table class="table table-responsive">
@@ -80,34 +97,44 @@
                     <h1>TOTAL: <i class="fas fa-dollar-sign secundary-text fa-sm"></i>
                         <%= pedido.precio %>
                     </h1>
+
                 </div>
             </div>
 
 
 
         </div>
-        <div class="card-footer text-center">
-            <div class="row align-items-center">
-                <form class="form-inline formulario-eliminar" method="post" action="/pedidos/eliminar/<%= pedido.id %>">
-                    <button class="btn btn-danger" type="submit">
-                        <i class="fas fa-solid fa-trash-alt"></i>
-                        Eliminar
-                    </button>
-                </form>
-                <form class="form-inline" method="get" action="/pedidos/editarProductos/<%= pedido.id %>">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-solid fa-edit"></i>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <form class="form-inline formulario-eliminar" method="post"
+                            action="/pedidos/eliminar/<%= pedido.id %>">
+                            <button class="btn btn-danger" type="submit">
+                                <i class="fas fa-solid fa-trash-alt"></i>
+                                Eliminar
+                            </button>
+                        </form>
+                        <form class="form-inline" method="get" action="/pedidos/editarDatos/<%= pedido.id %>">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-solid fa-edit"></i>
 
-                        Editar
-                    </button>
-                </form>
-                <form class="form-inline" method="get" action="/pedidos/editarDatos/<%= pedido.id %>">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-solid fa-edit"></i>
+                                Editar datos
+                            </button>
+                        </form>
+                    </div>
 
-                        Editar datos
-                    </button>
-                </form>
+                </div>
+                <div class="col-4 text-center">
+                    <form class="form text-center" method="get" action="/pedidos/editarProductos/<%= pedido.id %>">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-solid fa-edit"></i>
+
+                            Editar productos
+                        </button>
+                    </form>
+                </div>
+
             </div>
 
         </div>
@@ -122,9 +149,9 @@
 
 
 <%- contentFor('footer') %>
-<script>
-    //SweetAlert2 - Confirmar Eliminacion de producto
-    $('.formulario-eliminar').submit(function (e) {
+    <script>
+        //SweetAlert2 - Confirmar Eliminacion de producto
+        $('.formulario-eliminar').submit(function (e) {
             e.preventDefault();
             Swal.fire({
                 title: 'Estas seguro de eliminar este pedido?',
@@ -146,5 +173,5 @@
                 }
             })
         });
-</script>
-<%- contentFor('header') %>
+    </script>
+    <%- contentFor('header') %>

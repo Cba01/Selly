@@ -19,10 +19,11 @@ module.exports = {
 
     },
     actualizar: function (conexion, datos, funcion) {
-        conexion.query("UPDATE pedido SET direccion = ?, idCliente = ?, idEstadoPago = ?, idEstadoPedido = ?, comentario = ? WHERE id=? ", [datos.pedidoTotal, datos.idPedido], funcion);
+        conexion.query("UPDATE pedido SET direccion = ?, idCliente = ?, idEstadoPago = ?, idEstadoEnvio = ?, comentario = ? WHERE id=? ", [datos.direccion, datos.clientRadio, datos.estadoPago, datos.estadoPedido, datos.txtArea, datos.idPedido], funcion);
 
     },
-
+    
+    
     
     
 

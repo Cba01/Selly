@@ -24,7 +24,7 @@ module.exports = {
 
         conexion.query("UPDATE producto SET imagen=? WHERE id=? ",[archivo.filename, datos.id], funcion);
     },
-
+    
 
 
 }

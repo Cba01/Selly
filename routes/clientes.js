@@ -7,7 +7,10 @@ const productosController = require("../controllers/productosController");
 
 /* GET home page. */
 router.get('/', clienteController.index);
+router.post('/', clienteController.guardar);
+router.get('/editar/:id', clienteController.editar);
 router.post('/eliminar/:id', clienteController.eliminar);
+router.post('/actualizar', clienteController.actualizar);
 
 
 

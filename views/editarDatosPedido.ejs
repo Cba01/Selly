@@ -1,8 +1,8 @@
-<h1>editar datos</h1>
-<div class="container-fluid">
+<h1>Editar datos</h1>
+<div class="container">
     <div class="row">
         <!-- Columna izquierda - productos -->
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="shadow p-3 mb-5 bg-white rounded">
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -25,7 +25,7 @@
                                     <label for="divClientes" class="form-label">Datos del cliente</label>
                                     <div class="shadow p-3 mb-5 bg-white rounded" id="divClientes">
                                         <input class="form-control mr-sm-2 mb-3 buscador" type="text" id="buscador"
-                                            placeholder="Buscar cliente" aria-label="Search">
+                                            placeholder="Buscar cliente" aria-label="Search" value="<%= pedido.cliente %>">
                                         <!-- lista de clientes -->
                                         <div class="client-scroll">
                                             <% for( let i=0; i < cliente.length; i++ ) { %>
@@ -37,7 +37,9 @@
                                                                 <label for="radio<%=cliente[i].id%>" class="radio">
                                                                     <input id="radio<%=cliente[i].id%>"
                                                                         name="clientRadio" value="<%= cliente[i].id %>"
-                                                                        type="radio">
+                                                                        type="radio" <% if (pedido.cliente == cliente[i].nombre) { %>
+                                                                         checked
+                                                                        <% } %>>
                                                                     <span class="radio__mark"></span>
                                                                 </label>
 
@@ -68,37 +70,50 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="direccion" class="form-label">Direccion de entrega</label>
-                                        <input type="text" class="form-control" id="direccion" name="direccion"
-                                            required>
+                                        <input type="text" class="form-control" id="direccion" name="direccion" value="<%= pedido.direccion %>" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="estadoPedido" class="form-label">Estado de pedido</label>
                                         <select class="form-control" id="estadoPedido" name="estadoPedido" aria-label="Default select example" required>
                                             <option selected disabled value="" >Elegir estado</option>
-                                            <option value="1">Pendiente</option>
-                                            <option value="2">Preparado</option>
-                                            <option value="3">Enviado</option>
-                                            <option value="4">Completado</option>
+                                            <option <% if (pedido.idEstadoEnvio ==1) { %>
+                                             selected
+                                            <% } %> value="1">Pendiente</option>
+                                            <option <% if (pedido.idEstadoEnvio ==2) { %>
+                                                selected
+                                            <% } %>value="2">Preparado</option>
+                                            <option <% if (pedido.idEstadoEnvio ==3) { %>
+                                                selected
+                                                <% } %> value="3">Enviado</option>
+                                            <option <% if (pedido.idEstadoEnvio ==4) { %>
+                                                selected
+                                                <% } %> value="4">Completado</option>
                                           </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="estadoPago" class="form-label">Estado de pago</label>
                                         <select class="form-control" id="estadoPago" name="estadoPago" aria-label="Default select example" required>
                                             <option selected disabled value="">Elegir estado</option>
-                                            <option value="1">Pendiente</option>
-                                            <option value="2">Pagado</option>
+                                            <option <% if (pedido.idEstadoPago ==1) { %>
+                                                selected
+                                                <% } %> value="1">Pendiente</option>
+                                            <option <% if (pedido.idEstadoPago ==2) { %>
+                                                selected
+                                                <% } %> value="2">Pagado</option>
                                           </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="txtArea" class="form-label">Comentario</label>
                                         <textarea class="form-control" id="txtArea" maxlength="200" name="txtArea"
-                                            rows="5"></textarea>
+                                            rows="5"><%= pedido.comentario %></textarea>
                                     </div>
                                 </div>
-                                <input type="text" name="strPedido" id="strPedido" value="<%= strPedido %> " hidden>
+                                <input type="text" name="strPedido" id="strPedido" value="<%= strPedido %>" hidden>
+                                <input type="text" name="idPedido" id="idPedido" value="<%= pedido.id %>" hidden>
                             </div>
-                            <button type="submit" class="btn btn-secundario mt-3">Crear
-                                pedido</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-principal mt-3">Guardar cambios</button>
+                            </div>
                         </form>
 
                     </div>
@@ -129,53 +144,6 @@
             </div>
         </div>
         <!-- Fin columna izquierda -->
-
-        <!-- Columna derecha - Lista de pedido -->
-        <div class="col-md-4">
-            <div class="shadow p-3 mb-5 bg-white rounded">
-                <div class="card ">
-                    <div class="card-header">
-                        <h3 class="card-title primary-text">Pedido</h3>
-                    </div>
-                    <!-- Lista de productos en el pedido -->
-                    <div class="card-body">
-                        <table class="table table-responsive">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Imagen</th>
-                                    <th scope="col">Producto</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Precio c/u</th>
-                                </tr>
-                            </thead>
-                            <tbody class="tbody">
-                                <% for( let i=0; i < pedido.length; i++ ) { %>
-                                    <tr>
-                                        <th scope="row">
-                                            <%= pedido[i].id %>
-                                        </th>
-                                        <td> <img src="/images/<%= pedido[i].imagen %>" width="30" height="30"
-                                                class="rounded" alt="...">
-                                        </td>
-                                        <td>
-                                            <%= pedido[i].nombreProducto %>
-                                        </td>
-                                        <td>
-                                            <%= pedido[i].cantidad %>
-                                        </td>
-                                        <td>
-                                            <%= pedido[i].precio %>
-                                        </td>
-                                    </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Fin columna derecha -->
     </div>
 </div>
 <%- contentFor('footer') %>
