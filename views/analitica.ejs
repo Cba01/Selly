@@ -1,0 +1,234 @@
+<div class="container-fluid pl-5 pr-5">
+    <h1>Analitica</h1>
+    <div class="row">
+        <div class="col">
+            <!--  CARD PEDIDOS EN TOTAL -->
+            <div class="card shadow card-outline card-principal text-center">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">Total de ingresos</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h1 class="font-weight-bold"><i class="fas fa-dollar-sign secundary-text fa-sm"></i>
+                        <%= ingresos.ingresos %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <!--  CARD PRODUCTO MAS PEDIDO -->
+            <div class="card shadow card-outline card-principal text-center">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">Total de pedidos</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h1 class="font-weight-bold">
+                        <%= pedidosTotal.pedidos %>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <!--  CARD DEL MES TOTAL -->
+            <div class="card shadow card-outline card-principal text-center">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">INGRESOS DEL MES</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h1 class="font-weight-bold"><i class="fas fa-dollar-sign secundary-text fa-sm"></i>
+                        <% if (ingresosMes!=null) { %>
+                            <%= ingresosMes.ingresos %>
+                                <% } else { %>
+                                    0
+                                    <%}%>
+                    </h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card shadow card-outline card-principal text-center">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">Ingresos mes pasado</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h1 class="font-weight-bold">
+                        <h1 class="font-weight-bold"><i class="fas fa-dollar-sign secundary-text fa-sm"></i>
+                            <% if (ingresosMesPasado!=null) { %>
+                                <%= ingresosMesPasado.ingresos %>
+                                    <% }else { %>
+                                        0
+                                        <%}%>
+                        </h1>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="card shadow card-outline card-principal text-center">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">Ingresos en el año</h5>
+                    </div>
+                </div>
+                <div class="chartBox" >
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-3 ">
+            <div class="card shadow card-outline card-principal ">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">Productos mas pedidos</h5>
+                    </div>
+                </div>
+                <div class="chartBox">
+                    <canvas id="chartProductosTop"></canvas>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-3">
+            <div class="card shadow card-outline card-principal text-center">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">Producto mas pedido</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img src="/images/<%= productoVendido.imagen %>" alt="Product" class="rounded mr-2"
+                                width="200" height="150" required>
+                            <h4>
+                                <%= productoVendido.nombre %>
+                            </h4>
+                </div>
+            </div>
+            <div class="card shadow card-outline card-principal text-center">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-center text-center">
+                        <h5 class="font-weight-bold primary-text">Producto menos pedido</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img src="/images/<%= productoMenosVendido.imagen %>" alt="Product" class="rounded mr-2"
+                                width="200" height="150" required>
+                            <h4>
+                                <%= productoMenosVendido.nombre %>
+                            </h4>
+                </div>
+            </div>
+        </div>
+        <input type="text" id="jsonPedidoMes" value="<%= datoMes %>" hidden>
+        <input type="text" id="strProductosTop" value="<%= strProductosTop %>" hidden>
+
+
+    </div>
+</div>
+
+
+<%- contentFor('footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/dist/js/analiticaGraficos.js"></script>
+    <script>
+        let pedidoMes = [];
+        const strPedidoMes = JSON.parse(document.getElementById("jsonPedidoMes").value);
+
+        let productosTop = [];
+        const strProductosTop = JSON.parse(document.getElementById("strProductosTop").value);
+        let productosTopCantidad = [];
+        let productosTopNombre = [];
+
+        productosTop = strProductosTop;
+        pedidoMes = strPedidoMes;
+        const pedido10 = 0;
+
+        for (let i = 0; i < productosTop.length; i++) {
+            productosTopCantidad.push(productosTop[i].cantidad);
+            productosTopNombre.push(productosTop[i].nombre);
+        }
+
+
+        const labels = [
+            'Enero',
+            'Febrero',
+            'Marzo',
+            'Abril',
+            'Mayo',
+            'Junio',
+            'Julio',
+            'Agosto',
+            'Septiembre',
+            'Octubre',
+            'Noviembre',
+            'Diciembre',
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Ingresos del año',
+                backgroundColor: '#9466C5',
+                borderColor: '#9466C5',
+                data: [pedidoMes[0].ingresosMes, pedidoMes[1].ingresosMes, pedidoMes[2].ingresosMes, pedidoMes[3].ingresosMes, pedidoMes[4].ingresosMes, pedidoMes[5].ingresosMes,
+                pedidoMes[6].ingresosMes, pedidoMes[7].ingresosMes, pedidoMes[8].ingresosMes, pedidoMes[9].ingresosMes, pedidoMes[10].ingresosMes, pedidoMes[11].ingresosMes],
+            }]
+        };
+        const dataProductosTop = {
+            labels: productosTopNombre,
+            datasets: [{
+                label: 'Productos mas pedidos',
+                backgroundColor: '#9466C5',
+                data: productosTopCantidad,
+            }]
+        };
+        const dataPedidosMes = {
+            labels: labels,
+            datasets: [{
+                label: 'Pedidos del año',
+                backgroundColor: '#9466C5',
+                data: [pedidoMes[0].ingresosMes, pedidoMes[1].ingresosMes, pedidoMes[2].ingresosMes, pedidoMes[3].ingresosMes, pedidoMes[4].ingresosMes, pedidoMes[5].ingresosMes,
+                pedidoMes[6].ingresosMes, pedidoMes[7].ingresosMes, pedidoMes[8].ingresosMes, pedidoMes[9].ingresosMes, pedidoMes[10].ingresosMes, pedidoMes[11].ingresosMes],
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+        };
+        const config2 = {
+            type: 'pie',
+            data: dataProductosTop,
+            options: {}
+        };
+
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        const chartProductosTop = new Chart(
+            document.getElementById('chartProductosTop'),
+            config2
+        );
+
+
+
+
+    </script>
+    <%- contentFor('header') %>

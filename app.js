@@ -15,6 +15,7 @@ var productosRouter = require('./routes/productos');
 var crearPedidoRouter = require('./routes/crearPedido');
 var pedidosRouter = require('./routes/pedidos');
 var clientesRouter = require('./routes/clientes');
+var analiticaRouter = require('./routes/analitica');
 
 
 var app = express();
@@ -41,6 +42,7 @@ app.use('/productos', productosRouter);
 app.use('/crearPedido', crearPedidoRouter);
 app.use('/pedidos', pedidosRouter);
 app.use('/clientes', clientesRouter);
+app.use('/analitica', analiticaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
